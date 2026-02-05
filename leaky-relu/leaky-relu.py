@@ -17,10 +17,23 @@ def leaky_relu(x, alpha=0.01):
 
     Hints:
     use np.asarray
+    I learnt today you can multiply Boolean with values
+    In python True represent 1 and False is 0
+    so you can do something like 2 * True which is the same as 2 * 1
+    also 2 * False which is the same as 2 * 0
+    so you can use this technique to filter out posive or negative values
+
+    so if you have x np. ndarray of float = [-1.0, 2.0, -3.0, 5]
+    you can use create mask with  x >= 0 for positive and x < 0 for negative
+    so for positve value you can dos something like:
+    
+    positive = x * (x >= 0)
+    negative = x * (x < 0)
+    
     '''
-    x = np.asarray(x, dtype = np.float64)
-    negative_mask = x <= 0
-    corrected = x[negative_mask] * alpha
-    x[negative_mask] = corrected
-    return x
+    x = np.asarray(x, dtype=np.float64)
+    return np.where(x >= 0, x, x * alpha)
+
+
+    
     
